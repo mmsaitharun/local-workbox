@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	
+  <display-name>Process Management Console</display-name>
+ <servlet>
+        <servlet-name>pmc</servlet-name>
+        <servlet-class>
+                     com.sun.jersey.spi.container.servlet.ServletContainer
+                </servlet-class>
+        <init-param>
+             <param-name>com.sun.jersey.config.property.packages</param-name>
+             <param-value>oneapp.incture.workbox.inbox.rest</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+ 
+    <servlet-mapping>
+        <servlet-name>pmc</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+    
+    <ejb-local-ref>
+    	<description>WorkBoxActionFacadeWsdlConsumerLocal</description>
+		<ejb-ref-name>WorkBoxActionFacadeWsdlConsumerLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local>oneapp.incture.workbox.inbox.services.WorkBoxActionFacadeWsdlConsumerLocal</local>
+	</ejb-local-ref>
+	<ejb-local-ref>
+		<ejb-ref-name>WorkboxFacadeLocal</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local>oneapp.incture.workbox.inbox.services.WorkboxFacadeLocal</local>
+	</ejb-local-ref>
+	
+</web-app>
